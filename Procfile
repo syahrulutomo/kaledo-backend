@@ -1,1 +1,1 @@
-wweb: java $JAVA_OPTS -cp target/classes:target/dependency/* kaledo-backend
+web: java -Dserver.port=$PORT -jar target/*.jar
