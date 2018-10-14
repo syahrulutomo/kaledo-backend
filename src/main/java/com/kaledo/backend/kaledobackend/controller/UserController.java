@@ -31,7 +31,7 @@ public class UserController {
     @Autowired
     private UserDao userDao;
     
-    @RequestMapping(value="/users", method = RequestMethod.GET)
+    @RequestMapping(value="/user", method = RequestMethod.GET)
      public Page<User> cariUser(Pageable page) {         
          return userDao.findAll(page);
      }
