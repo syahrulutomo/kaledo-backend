@@ -32,31 +32,31 @@ public class UserController {
     @Autowired
     private UserDao userDao;
     
-    @RequestMapping(value="/user", method = RequestMethod.GET)
-    public Page<User> cariUser(Pageable page) {         
-         return userDao.findAll(page);
+    @RequestMapping(value="/users", method = RequestMethod.GET)
+    public Page<User> cariCategory(Pageable page) {         
+        return userDao.findAll(page);      
     }
      
-    @RequestMapping(value="/user", method = RequestMethod.POST)
+    @RequestMapping(value="/users", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void insertUserBaru(@RequestBody User u){
         userDao.save(u);
     }
      
-     @RequestMapping(value="/user/{email}", method = RequestMethod.PUT)
+     @RequestMapping(value="/users/{email}", method = RequestMethod.PUT)
      @ResponseStatus(HttpStatus.OK)
      public void updateUser(@PathVariable("email") String email, @RequestBody User u){
          u.setEmail(email);
          userDao.save(u);
      }
      
-     @RequestMapping(value="/user/{email}", method = RequestMethod.GET)
+     @RequestMapping(value="/users/{email}", method = RequestMethod.GET)
      @ResponseStatus(HttpStatus.OK)
      public Optional<User> findUserByEmail(@PathVariable("email") String email){
          return userDao.findById(email);
      }
      
-     @RequestMapping(value="/user/{email}", method = RequestMethod.DELETE)
+     @RequestMapping(value="/users/{email}", method = RequestMethod.DELETE)
      @ResponseStatus(HttpStatus.OK)
      public void hapusUser(@PathVariable("email") String email){
          userDao.deleteById(email);

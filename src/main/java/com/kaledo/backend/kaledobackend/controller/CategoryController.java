@@ -34,8 +34,7 @@ public class CategoryController {
 
     @RequestMapping(value="/category", method = RequestMethod.GET)
     public Page<Category> cariCategory(Pageable page) {         
-        return categoryDao.findAll(page);
-        
+        return categoryDao.findAll(page);      
     }
      
      @RequestMapping(value="/category", method = RequestMethod.POST)
