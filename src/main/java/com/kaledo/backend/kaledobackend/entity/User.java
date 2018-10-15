@@ -23,25 +23,16 @@ import javax.persistence.OneToMany;
 @Entity
 public class User {
     
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
     private String firstName;
     private String lastName;
+    
+    @Id
     private String email;
     private String password;
     private String profilPicture;
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Recipe> recipe;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;

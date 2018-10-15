@@ -14,9 +14,6 @@ import org.springframework.data.repository.query.Param;
  *
  * @author Syahrul
  */
-public interface UserDao extends PagingAndSortingRepository<User, Integer>{
-   
-    @Query("select u from User u where u.email = :email and password = :password ")
-    User findByEmailByPassword(@Param("email") String email,@Param("password") String password);
-    
+public interface UserDao extends PagingAndSortingRepository<User, String>{
+      
 }

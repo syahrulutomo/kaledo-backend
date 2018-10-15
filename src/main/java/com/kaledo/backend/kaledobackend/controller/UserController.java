@@ -7,6 +7,7 @@ package com.kaledo.backend.kaledobackend.controller;
 
 import com.kaledo.backend.kaledobackend.dao.UserDao;
 import com.kaledo.backend.kaledobackend.entity.User;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,37 +33,32 @@ public class UserController {
     private UserDao userDao;
     
     @RequestMapping(value="/user", method = RequestMethod.GET)
-     public Page<User> cariUser(Pageable page) {         
+    public Page<User> cariUser(Pageable page) {         
          return userDao.findAll(page);
-     }
+    }
      
-     @RequestMapping(value="/user/login/", method = RequestMethod.GET)
-     public User findByEmail(@RequestParam("email") String email,@RequestParam("password") String password){
-        return userDao.findByEmailByPassword(email,password);
-     }
+    @RequestMapping(value="/user", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void insertUserBaru(@RequestBody User u){
+        userDao.save(u);
+    }
      
-     @RequestMapping(value="/user", method = RequestMethod.POST)
-     @ResponseStatus(HttpStatus.CREATED)
-     public void insertUserBaru(@RequestBody User u){
+     @RequestMapping(value="/user/{email}", method = RequestMethod.PUT)
+     @ResponseStatus(HttpStatus.OK)
+     public void updateUser(@PathVariable("email") String email, @RequestBody User u){
+         u.setEmail(email);
          userDao.save(u);
      }
      
-     @RequestMapping(value="/user/{id}", method = RequestMethod.PUT)
+     @RequestMapping(value="/user/{email}", method = RequestMethod.GET)
      @ResponseStatus(HttpStatus.OK)
-     public void updateUser(@PathVariable("id") Integer id, @RequestBody User u){
-         u.setId(id);
-         userDao.save(u);
+     public Optional<User> findUserByEmail(@PathVariable("email") String email){
+         return userDao.findById(email);
      }
      
-//     @RequestMapping(value="/user/{id}", method = RequestMethod.GET)
-//     @ResponseStatus(HttpStatus.OK)
-//     public User findUserById(@PathVariable("id") String id){
-//         return userDao.findOne(id);
-//     }
-     
-     @RequestMapping(value="/user/{id}", method = RequestMethod.DELETE)
+     @RequestMapping(value="/user/{email}", method = RequestMethod.DELETE)
      @ResponseStatus(HttpStatus.OK)
-     public void hapusUser(@PathVariable("id") Integer id){
-         userDao.deleteById(id);
+     public void hapusUser(@PathVariable("email") String email){
+         userDao.deleteById(email);
      }
 }
