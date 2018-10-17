@@ -33,7 +33,7 @@ public class UserController {
     private UserDao userDao;
     
     @RequestMapping(value="/users", method = RequestMethod.GET)
-    public Page<User> cariCategory(Pageable page) {         
+    public Page<User> cariUsers(Pageable page) {         
         return userDao.findAll(page);      
     }
      
