@@ -28,7 +28,7 @@ public class SwaggerConfig {
                 "Kaledo Backend",
                 "1.0",
                 "Terms of service",
-                "Created by Kaledo Team ",
+                "Kaledo Team ",
                 "Apache License Version 2.0",
                 "https://www.apache.org/licenses/LICENSE-2.0");
         return apiInfo;
