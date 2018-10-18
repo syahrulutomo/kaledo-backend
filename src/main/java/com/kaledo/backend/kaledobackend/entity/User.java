@@ -36,6 +36,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Recipe> recipe;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Howto> howTo;    
+    
     public String getFirstName() {
         return firstName;
     }
