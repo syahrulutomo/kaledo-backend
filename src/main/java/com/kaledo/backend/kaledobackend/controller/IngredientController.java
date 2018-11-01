@@ -7,6 +7,7 @@ package com.kaledo.backend.kaledobackend.controller;
 
 import com.kaledo.backend.kaledobackend.dao.IngredientDao;
 import com.kaledo.backend.kaledobackend.entity.Ingredient;
+import com.kaledo.backend.kaledobackend.entity.Recipe;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,9 +37,13 @@ public class IngredientController {
         return ingredientDao.findAll(page);
     }
      
-     @RequestMapping(value="/ingredient", method = RequestMethod.POST)
+     @RequestMapping(value="/ingredient/recipe{id_recipe}", method = RequestMethod.POST)
      @ResponseStatus(HttpStatus.CREATED)
-     public void insertIngredientBaru(@RequestBody Ingredient i){
+     public void insertIngredientBaru(@RequestBody Ingredient i, @PathVariable("id_recipe") Integer idRecipe){
+         Recipe r = new Recipe();
+         r.setId(idRecipe);
+         
+         i.setRecipe(r);
          ingredientDao.save(i);
      }
      

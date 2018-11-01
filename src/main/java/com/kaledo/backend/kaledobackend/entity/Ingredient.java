@@ -5,6 +5,7 @@
  */
 package com.kaledo.backend.kaledobackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class Ingredient {
     private Integer id;
     private String ingredient;
     
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_recipe")
     private Recipe recipe;

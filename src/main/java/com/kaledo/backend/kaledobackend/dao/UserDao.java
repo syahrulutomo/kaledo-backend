@@ -5,8 +5,11 @@
  */
 package com.kaledo.backend.kaledobackend.dao;
 
+import com.kaledo.backend.kaledobackend.entity.Recipe;
 import com.kaledo.backend.kaledobackend.entity.User;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -14,4 +17,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface UserDao extends PagingAndSortingRepository<User, String>{
     
+    @Query("SELECT r FROM User u, Recipe r WHERE r.title = :title and u.email = :email")
+    Recipe findUserRecipe( @Param("title") String title ,@Param("email") String email);
 }

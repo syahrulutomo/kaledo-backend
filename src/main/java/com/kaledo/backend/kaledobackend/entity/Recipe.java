@@ -5,6 +5,8 @@
  */
 package com.kaledo.backend.kaledobackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -26,22 +28,25 @@ public class Recipe {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
     
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_category")
     private Category category;
     
+    private String subCategory;
     private String title;
     
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
-    private List<Direction> direction;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "recipe") 
+    private List<Direction> directionList = new ArrayList<>();
     
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
-    private List<Ingredient> ingredient;
-    
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "recipe") 
+    private List<Ingredient> ingredirentList = new ArrayList<>();
+  
     private String photos;
     
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "id_user")
+    @JoinColumn(name = "user_email")
     private User user;
     private String time;
 
@@ -52,7 +57,7 @@ public class Recipe {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public Category getCategory() {
         return category;
     }
@@ -67,6 +72,30 @@ public class Recipe {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(String subCategory) {
+        this.subCategory = subCategory;
+    }
+
+    public List<Direction> getDirectionList() {
+        return directionList;
+    }
+
+    public void setDirectionList(List<Direction> directionList) {
+        this.directionList = directionList;
+    }
+
+    public List<Ingredient> getIngredirentList() {
+        return ingredirentList;
+    }
+
+    public void setIngredirentList(List<Ingredient> ingredirentList) {
+        this.ingredirentList = ingredirentList;
     }
 
     public String getPhotos() {
@@ -92,8 +121,5 @@ public class Recipe {
     public void setTime(String time) {
         this.time = time;
     }
-
-   
-    
-    
+ 
 }

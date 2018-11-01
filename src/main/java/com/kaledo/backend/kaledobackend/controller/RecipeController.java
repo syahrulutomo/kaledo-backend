@@ -6,7 +6,14 @@
 package com.kaledo.backend.kaledobackend.controller;
 
 import com.kaledo.backend.kaledobackend.dao.RecipeDao;
+import com.kaledo.backend.kaledobackend.dao.UserDao;
+import com.kaledo.backend.kaledobackend.entity.Category;
+import com.kaledo.backend.kaledobackend.entity.Direction;
+import com.kaledo.backend.kaledobackend.entity.Ingredient;
 import com.kaledo.backend.kaledobackend.entity.Recipe;
+import com.kaledo.backend.kaledobackend.entity.User;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,15 +37,28 @@ public class RecipeController {
 
     @Autowired
     private RecipeDao recipeDao; 
+    
+    @Autowired
+    private UserDao userDao; 
 
     @RequestMapping(value="/recipe", method = RequestMethod.GET)
     public Page<Recipe> cariRecipe(Pageable page) {         
        return recipeDao.findAll(page);      
     }
      
-     @RequestMapping(value="/recipe", method = RequestMethod.POST)
+     @RequestMapping(value="/recipe/category{idCategory}/user{email}", method = RequestMethod.POST)
      @ResponseStatus(HttpStatus.CREATED)
-     public void insertRecipeBaru(@RequestBody Recipe r){
+     public void insertRecipeBaru(@RequestBody Recipe r, @PathVariable("idCategory") Integer idCategory,
+             @PathVariable("email") String email){
+        Category c = new Category();
+        c.setId(idCategory);
+        
+        User u = new User();
+        u.setEmail(email);
+        
+        r.setCategory(c);
+        r.setUser(u);
+                
         recipeDao.save(r);
      }
      
@@ -53,6 +73,13 @@ public class RecipeController {
      @ResponseStatus(HttpStatus.OK)
      public Optional<Recipe> findRecipeById(@PathVariable("id") Integer id){
          return recipeDao.findById(id);
+     }
+     
+     @RequestMapping(value="/recipe/title{title}/user{email}", method = RequestMethod.GET)
+     @ResponseStatus(HttpStatus.OK)
+     public Recipe findUserRecipe(@PathVariable("title") String title,
+             @PathVariable("email") String email){
+         return userDao.findUserRecipe(title, email);
      }
      
      @RequestMapping(value="/recipe/{id}", method = RequestMethod.DELETE)

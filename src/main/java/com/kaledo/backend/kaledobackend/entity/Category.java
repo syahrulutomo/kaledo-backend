@@ -5,6 +5,7 @@
  */
 package com.kaledo.backend.kaledobackend.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -24,8 +25,8 @@ public class Category {
     private Integer id;   
     private String categoryName;
     
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL) 
-    private List<Recipe> recipe;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "category") 
+    private List<Recipe> recipeList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -43,14 +44,15 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public List<Recipe> getRecipe() {
-        return recipe;
+    public List<Recipe> getRecipeList() {
+        return recipeList;
     }
 
-    public void setRecipe(List<Recipe> recipe) {
-        this.recipe = recipe;
+    public void setRecipeList(List<Recipe> recipeList) {
+        this.recipeList = recipeList;
     }
 
+   
     
     
 }

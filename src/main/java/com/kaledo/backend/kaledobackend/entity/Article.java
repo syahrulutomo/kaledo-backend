@@ -19,16 +19,17 @@ import javax.persistence.ManyToOne;
  */
 
 @Entity
-public class Direction {
+public class Article {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
-    private String direction;
+    
+    private String article;
     
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "id_recipe")
-    private Recipe recipe;
+    @JoinColumn(name = "id_howto")
+    private Howto howto;
 
     public Integer getId() {
         return id;
@@ -38,22 +39,21 @@ public class Direction {
         this.id = id;
     }
 
-    public String getDirection() {
-        return direction;
+    public String getArticle() {
+        return article;
     }
 
-    public void setDirection(String direction) {
-        this.direction = direction;
+    public void setArticle(String article) {
+        this.article = article;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
+    public Howto getHowto() {
+        return howto;
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public void setHowto(Howto howto) {
+        this.howto = howto;
     }
-    
     
     
 }

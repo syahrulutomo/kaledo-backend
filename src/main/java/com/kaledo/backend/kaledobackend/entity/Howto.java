@@ -5,10 +5,17 @@
  */
 package com.kaledo.backend.kaledobackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -19,15 +26,19 @@ import javax.persistence.ManyToOne;
 public class Howto {
     
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
     
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "id_user")
+    @JoinColumn(name = "user_email")
     private User user;
     
     private String thumbnail;
     private String title;
-    private String content;
+    
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "howto") 
+    private List<Article> articleList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -61,13 +72,15 @@ public class Howto {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
+    public List<Article> getArticleList() {
+        return articleList;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setArticleList(List<Article> articleList) {
+        this.articleList = articleList;
     }
+
+    
     
     
     

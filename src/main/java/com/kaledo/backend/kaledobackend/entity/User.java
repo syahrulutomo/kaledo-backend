@@ -5,8 +5,10 @@
  */
 package com.kaledo.backend.kaledobackend.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,15 +31,16 @@ public class User {
     private String lastName;
     
     @Id
+    @Column(nullable = false)
     private String email;
     private String password;
     private String profilPicture;
     
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Recipe> recipe;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Howto> howTo;    
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user") 
+    private List<Recipe> recipeList = new ArrayList<>();
+    
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user") 
+    private List<Howto> howtoList = new ArrayList<>();
     
     public String getFirstName() {
         return firstName;
@@ -79,15 +82,25 @@ public class User {
         this.profilPicture = profilPicture;
     }
 
+    public List<Recipe> getRecipeList() {
+        return recipeList;
+    }
+
+    public void setRecipeList(List<Recipe> recipeList) {
+        this.recipeList = recipeList;
+    }
+
+    public List<Howto> getHowtoList() {
+        return howtoList;
+    }
+
+    public void setHowtoList(List<Howto> howtoList) {
+        this.howtoList = howtoList;
+    }
+
+    
    
-    public List<Recipe> getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(List<Recipe> recipe) {
-        this.recipe = recipe;
-    }
-
+   
    
     
     
