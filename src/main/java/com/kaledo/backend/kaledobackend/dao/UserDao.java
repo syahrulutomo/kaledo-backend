@@ -19,4 +19,7 @@ public interface UserDao extends PagingAndSortingRepository<User, String>{
     
     @Query("SELECT r FROM User u, Recipe r WHERE r.title = :title and u.email = :email")
     Recipe findUserRecipe( @Param("title") String title ,@Param("email") String email);
+    
+    @Query("SELECT h FROM User u, Howto h WHERE h.title = :title and u.email = :email")
+    Recipe findUserHowto( @Param("title") String title ,@Param("email") String email);
 }

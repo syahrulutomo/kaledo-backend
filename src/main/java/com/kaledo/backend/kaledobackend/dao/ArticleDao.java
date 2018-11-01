@@ -10,8 +10,9 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  *
- * @author timm
+ * @author Syahrul
  */
 public interface ArticleDao extends PagingAndSortingRepository<Article, Integer>{
+    
     
 }

@@ -6,7 +6,9 @@
 package com.kaledo.backend.kaledobackend.controller;
 
 import com.kaledo.backend.kaledobackend.dao.HowtoDao;
+import com.kaledo.backend.kaledobackend.dao.UserDao;
 import com.kaledo.backend.kaledobackend.entity.Howto;
+import com.kaledo.backend.kaledobackend.entity.Recipe;
 import com.kaledo.backend.kaledobackend.entity.User;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,9 @@ public class HowtoController {
     
     @Autowired
     private HowtoDao hd;
+    
+    @Autowired
+    private UserDao ud;
     
     @RequestMapping(value="/howto", method = RequestMethod.GET)
     public Page<Howto> cariHowto(Pageable page) {         
@@ -61,6 +66,14 @@ public class HowtoController {
     public Optional<Howto> findCategoryById(@PathVariable("id") Integer id){
         return hd.findById(id);
     }
+    
+    
+     @RequestMapping(value="/howto/title{title}/user{email}", method = RequestMethod.GET)
+     @ResponseStatus(HttpStatus.OK)
+     public Recipe findUserHowto(@PathVariable("title") String title,
+             @PathVariable("email") String email){
+         return ud.findUserHowto(title, email);
+     }
      
      @RequestMapping(value="/howto/{id}", method = RequestMethod.DELETE)
      @ResponseStatus(HttpStatus.OK)
