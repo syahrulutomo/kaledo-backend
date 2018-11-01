@@ -5,6 +5,7 @@
  */
 package com.kaledo.backend.kaledobackend.dao;
 
+import com.kaledo.backend.kaledobackend.entity.Howto;
 import com.kaledo.backend.kaledobackend.entity.Recipe;
 import com.kaledo.backend.kaledobackend.entity.User;
 import org.springframework.data.jpa.repository.Query;
