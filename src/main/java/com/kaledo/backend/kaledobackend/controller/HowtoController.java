@@ -70,7 +70,7 @@ public class HowtoController {
     
      @RequestMapping(value="/howto/title{title}/user{email}", method = RequestMethod.GET)
      @ResponseStatus(HttpStatus.OK)
-     public Recipe findUserHowto(@PathVariable("title") String title,
+     public Howto findUserHowto(@PathVariable("title") String title,
              @PathVariable("email") String email){
          return ud.findUserHowto(title, email);
      }
