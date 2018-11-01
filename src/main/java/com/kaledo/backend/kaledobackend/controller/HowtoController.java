@@ -7,6 +7,7 @@ package com.kaledo.backend.kaledobackend.controller;
 
 import com.kaledo.backend.kaledobackend.dao.HowtoDao;
 import com.kaledo.backend.kaledobackend.entity.Howto;
+import com.kaledo.backend.kaledobackend.entity.User;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -38,9 +39,13 @@ public class HowtoController {
         return hd.findAll(page);      
     }
      
-    @RequestMapping(value="/howto", method = RequestMethod.POST)
+    @RequestMapping(value="/howto/user{email}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void insertHowtoBaru(@RequestBody Howto h){
+    public void insertHowtoBaru(@RequestBody Howto h, @PathVariable("email") String email){
+        User u = new User();
+        u.setEmail(email);
+        
+        h.setUser(u);
         hd.save(h);
     }
      
