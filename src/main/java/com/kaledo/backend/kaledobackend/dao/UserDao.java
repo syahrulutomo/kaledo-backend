@@ -21,5 +21,5 @@ public interface UserDao extends PagingAndSortingRepository<User, String>{
     Recipe findUserRecipe( @Param("title") String title ,@Param("email") String email);
     
     @Query("SELECT h FROM User u, Howto h WHERE h.title = :title and u.email = :email")
-    Recipe findUserHowto( @Param("title") String title ,@Param("email") String email);
+    Howto findUserHowto( @Param("title") String title ,@Param("email") String email);
 }
