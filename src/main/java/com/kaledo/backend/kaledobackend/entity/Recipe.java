@@ -35,6 +35,7 @@ public class Recipe {
     
     private String subCategory;
     private String title;
+    private String description;
     
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "recipe") 
     private List<Direction> directionList = new ArrayList<>();
