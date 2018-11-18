@@ -26,7 +26,7 @@ public class Article {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
     
-    @Type(type="text")
+    @Column(columnDefinition="text")
     private String article;
     
     @JsonIgnore
