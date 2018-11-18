@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import org.hibernate.annotations.Type;
 
 /**
  *
@@ -25,7 +26,7 @@ public class Article {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
     
-    @Column(length=5000)
+    @Type(type="text")
     private String article;
     
     @JsonIgnore
