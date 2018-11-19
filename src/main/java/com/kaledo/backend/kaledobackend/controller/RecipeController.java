@@ -46,6 +46,11 @@ public class RecipeController {
        return recipeDao.findAll(page);      
     }
      
+    @RequestMapping(value="/recipe/user{email}", method = RequestMethod.GET)
+    public Recipe cariRecipeByUser( @PathVariable("email") String email) {         
+       return recipeDao.findRecipeByUser(email);     
+    }
+    
      @RequestMapping(value="/recipe/category{idCategory}/user{email}", method = RequestMethod.POST)
      @ResponseStatus(HttpStatus.CREATED)
      public void insertRecipeBaru(@RequestBody Recipe r, @PathVariable("idCategory") Integer idCategory,

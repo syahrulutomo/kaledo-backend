@@ -20,4 +20,7 @@ public interface RecipeDao extends PagingAndSortingRepository<Recipe, Integer>{
     
     @Query("SELECT r FROM Recipe r WHERE r.title = :title ")
     Recipe findRecipeByTitle( @Param("title") String title);
+    
+    @Query("SELECT r FROM Recipe r WHERE r.user_email = :email ")
+    Recipe findRecipeByUser( @Param("email") String email);
 }

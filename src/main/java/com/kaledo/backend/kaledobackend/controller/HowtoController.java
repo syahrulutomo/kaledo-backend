@@ -70,9 +70,15 @@ public class HowtoController {
     
      @RequestMapping(value="/howto/title{title}/user{email}", method = RequestMethod.GET)
      @ResponseStatus(HttpStatus.OK)
-     public Howto findUserHowto(@PathVariable("title") String title,
+     public Howto findUserHowtoByTitle(@PathVariable("title") String title,
              @PathVariable("email") String email){
          return ud.findUserHowto(title, email);
+     }
+     
+     @RequestMapping(value="/howto/user{email}", method = RequestMethod.GET)
+     @ResponseStatus(HttpStatus.OK)
+     public Howto findUserHowto(@PathVariable("email") String email){
+         return hd.findHowtoByUser(email);
      }
      
      @RequestMapping(value="/howto/{id}", method = RequestMethod.DELETE)
