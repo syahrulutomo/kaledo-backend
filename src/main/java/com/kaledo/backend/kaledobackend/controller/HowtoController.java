@@ -76,9 +76,11 @@ public class HowtoController {
      }
      
      @RequestMapping(value="/howto/user{email}", method = RequestMethod.GET)
-     @ResponseStatus(HttpStatus.OK)
-     public Page<Howto> findUserHowto(@PathVariable("email") String email){
-         return hd.findHowtoByUser(email);
+     public Page<Howto> findHowtoByUser(Pageable page,@PathVariable("email") String email){
+        User u = new User();
+        u.setEmail(email);
+         
+         return hd.findByUser(u, page);
      }
      
      @RequestMapping(value="/howto/{id}", method = RequestMethod.DELETE)

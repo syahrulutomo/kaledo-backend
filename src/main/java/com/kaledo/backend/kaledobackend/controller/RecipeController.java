@@ -9,6 +9,7 @@ import com.kaledo.backend.kaledobackend.dao.RecipeDao;
 import com.kaledo.backend.kaledobackend.dao.UserDao;
 import com.kaledo.backend.kaledobackend.entity.Category;
 import com.kaledo.backend.kaledobackend.entity.Direction;
+import com.kaledo.backend.kaledobackend.entity.Howto;
 import com.kaledo.backend.kaledobackend.entity.Ingredient;
 import com.kaledo.backend.kaledobackend.entity.Recipe;
 import com.kaledo.backend.kaledobackend.entity.User;
@@ -47,8 +48,11 @@ public class RecipeController {
     }
      
     @RequestMapping(value="/recipe/user{email}", method = RequestMethod.GET)
-    public Page<Recipe> cariRecipeByUser( @PathVariable("email") String email) {         
-       return recipeDao.findRecipeByUser(email);     
+    public Page<Recipe> findHowtoByUser(Pageable page,@PathVariable("email") String email){
+        User u = new User();
+        u.setEmail(email);
+        
+        return recipeDao.findByUser(u, page);
     }
     
      @RequestMapping(value="/recipe/category{idCategory}/user{email}", method = RequestMethod.POST)
