@@ -63,7 +63,7 @@ public class HowtoController {
      
     @RequestMapping(value="/howto/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public Optional<Howto> findCategoryById(@PathVariable("id") Integer id){
+    public Optional<Howto> findHowtoById(@PathVariable("id") Integer id){
         return hd.findById(id);
     }
     
@@ -77,7 +77,7 @@ public class HowtoController {
      
      @RequestMapping(value="/howto/user{email}", method = RequestMethod.GET)
      @ResponseStatus(HttpStatus.OK)
-     public Howto findUserHowto(@PathVariable("email") String email){
+     public Page<Howto> findUserHowto(@PathVariable("email") String email){
          return hd.findHowtoByUser(email);
      }
      
