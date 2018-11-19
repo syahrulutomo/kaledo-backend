@@ -47,7 +47,7 @@ public class RecipeController {
     }
      
     @RequestMapping(value="/recipe/user{email}", method = RequestMethod.GET)
-    public Recipe cariRecipeByUser( @PathVariable("email") String email) {         
+    public Page<Recipe> cariRecipeByUser( @PathVariable("email") String email) {         
        return recipeDao.findRecipeByUser(email);     
     }
     
