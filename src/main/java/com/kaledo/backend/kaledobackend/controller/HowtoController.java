@@ -56,14 +56,14 @@ public class HowtoController {
      
     @RequestMapping(value="/howto/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-     public void updateHowto(@PathVariable("id") Integer id, @RequestBody Howto h){
+     public void updateHowto(@PathVariable("id") String id, @RequestBody Howto h){
         h.setId(id);
         hd.save(h);
      }
      
     @RequestMapping(value="/howto/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public Optional<Howto> findHowtoById(@PathVariable("id") Integer id){
+    public Optional<Howto> findHowtoById(@PathVariable("id") String id){
         return hd.findById(id);
     }
     
@@ -85,7 +85,7 @@ public class HowtoController {
      
      @RequestMapping(value="/howto/{id}", method = RequestMethod.DELETE)
      @ResponseStatus(HttpStatus.OK)
-     public void hapusUser(@PathVariable("id") Integer id){
+     public void hapusUser(@PathVariable("id") String id){
         hd.deleteById(id);
      }
 }

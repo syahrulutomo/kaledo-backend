@@ -20,7 +20,7 @@ import org.springframework.data.repository.query.Param;
  *
  * @author Syahrul
  */
-public interface HowtoDao extends PagingAndSortingRepository<Howto, Integer>{
+public interface HowtoDao extends PagingAndSortingRepository<Howto, String>{
     
     
     public Page<Howto> findByUser(User u, Pageable page);

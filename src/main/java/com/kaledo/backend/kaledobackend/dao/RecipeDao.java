@@ -20,7 +20,7 @@ import org.springframework.data.repository.query.Param;
  *
  * @author Syahrul
  */
-public interface RecipeDao extends PagingAndSortingRepository<Recipe, Integer>{
+public interface RecipeDao extends PagingAndSortingRepository<Recipe, String>{
     
     @Query("SELECT r FROM Recipe r WHERE r.title = :title ")
     Recipe findRecipeByTitle( @Param("title") String title);

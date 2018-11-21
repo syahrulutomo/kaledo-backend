@@ -39,7 +39,7 @@ public class IngredientController {
      
      @RequestMapping(value="/ingredient/recipe{id_recipe}", method = RequestMethod.POST)
      @ResponseStatus(HttpStatus.CREATED)
-     public void insertIngredientBaru(@RequestBody Ingredient i, @PathVariable("id_recipe") Integer idRecipe){
+     public void insertIngredientBaru(@RequestBody Ingredient i, @PathVariable("id_recipe") String idRecipe){
          Recipe r = new Recipe();
          r.setId(idRecipe);
          

@@ -39,7 +39,7 @@ public class DirectionController {
      
      @RequestMapping(value="/direction/recipe{id_recipe}", method = RequestMethod.POST)
      @ResponseStatus(HttpStatus.CREATED)
-     public void insertDirectionBaru(@RequestBody Direction d , @PathVariable("id_recipe") Integer idRecipe){
+     public void insertDirectionBaru(@RequestBody Direction d , @PathVariable("id_recipe") String idRecipe){
          Recipe r = new Recipe();
          r.setId(idRecipe);
          

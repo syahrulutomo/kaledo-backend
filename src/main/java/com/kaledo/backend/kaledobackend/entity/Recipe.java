@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
@@ -26,8 +27,9 @@ import javax.persistence.OneToMany;
 public class Recipe {
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
     
     @JsonIgnore
     @ManyToOne
@@ -54,11 +56,11 @@ public class Recipe {
     private User user;
     private String time;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

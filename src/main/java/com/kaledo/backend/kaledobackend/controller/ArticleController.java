@@ -44,7 +44,7 @@ public class ArticleController {
      
      @RequestMapping(value="/article/howto/{id_howto}", method = RequestMethod.POST)
      @ResponseStatus(HttpStatus.CREATED)
-     public void insertArticleBaru(@RequestBody Article a , @PathVariable("id_howto") Integer idHowto){
+     public void insertArticleBaru(@RequestBody Article a , @PathVariable("id_howto") String idHowto){
         Howto h = new Howto();
         h.setId(idHowto);
          

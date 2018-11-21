@@ -73,14 +73,14 @@ public class RecipeController {
      
      @RequestMapping(value="/recipe/{id}", method = RequestMethod.PUT)
      @ResponseStatus(HttpStatus.OK)
-     public void updateRecipe(@PathVariable("id") Integer id, @RequestBody Recipe r){
+     public void updateRecipe(@PathVariable("id") String id, @RequestBody Recipe r){
          r.setId(id);
          recipeDao.save(r);
      }
      
      @RequestMapping(value="/recipe/{id}", method = RequestMethod.GET)
      @ResponseStatus(HttpStatus.OK)
-     public Optional<Recipe> findRecipeById(@PathVariable("id") Integer id){
+     public Optional<Recipe> findRecipeById(@PathVariable("id") String id){
          return recipeDao.findById(id);
      }
      
@@ -93,7 +93,7 @@ public class RecipeController {
      
      @RequestMapping(value="/recipe/{id}", method = RequestMethod.DELETE)
      @ResponseStatus(HttpStatus.OK)
-     public void hapusRecipe(@PathVariable("id") Integer id){
+     public void hapusRecipe(@PathVariable("id") String id){
          recipeDao.deleteById(id);
      }
 }
