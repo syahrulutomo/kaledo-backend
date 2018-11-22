@@ -55,7 +55,7 @@ public class RecipeController {
         return recipeDao.findByUser(u, page);
     }
     
-    @RequestMapping(value="/recipe/category/id", method = RequestMethod.GET)
+    @RequestMapping(value="/recipe/category/{id}", method = RequestMethod.GET)
     public Category findHowtoByUser(@PathVariable("id") String id){
         Recipe r = new Recipe();
         r.setId(id);
