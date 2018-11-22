@@ -55,6 +55,14 @@ public class RecipeController {
         return recipeDao.findByUser(u, page);
     }
     
+    @RequestMapping(value="/recipe/category/id", method = RequestMethod.GET)
+    public Category findHowtoByUser(@PathVariable("id") String id){
+        Recipe r = new Recipe();
+        r.setId(id);
+        
+        return recipeDao.findCategoryRecipe(id);
+    }
+    
      @RequestMapping(value="/recipe/category{idCategory}/user{email}", method = RequestMethod.POST)
      @ResponseStatus(HttpStatus.CREATED)
      public void insertRecipeBaru(@RequestBody Recipe r, @PathVariable("idCategory") Integer idCategory,
