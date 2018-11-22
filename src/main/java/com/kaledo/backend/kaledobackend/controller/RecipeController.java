@@ -48,19 +48,11 @@ public class RecipeController {
     }
      
     @RequestMapping(value="/recipe/user{email}", method = RequestMethod.GET)
-    public Page<Recipe> findHowtoByUser(Pageable page,@PathVariable("email") String email){
+    public Page<Recipe> findRecipeByUser(Pageable page,@PathVariable("email") String email){
         User u = new User();
         u.setEmail(email);
         
         return recipeDao.findByUser(u, page);
-    }
-    
-    @RequestMapping(value="/recipe/category/{id}", method = RequestMethod.GET)
-    public Category findHowtoByUser(@PathVariable("id") String id){
-        Recipe r = new Recipe();
-        r.setId(id);
-        
-        return recipeDao.findCategoryRecipe(id);
     }
     
      @RequestMapping(value="/recipe/category{idCategory}/user{email}", method = RequestMethod.POST)

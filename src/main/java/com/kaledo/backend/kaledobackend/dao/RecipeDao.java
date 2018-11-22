@@ -26,9 +26,6 @@ public interface RecipeDao extends PagingAndSortingRepository<Recipe, String>{
     @Query("SELECT r FROM Recipe r WHERE r.title = :title ")
     Recipe findRecipeByTitle( @Param("title") String title);
     
-    @Query("SELECT c FROM Category c, Recipe r WHERE r.id = :id ")
-    Category findCategoryRecipe( @Param("id") String id );
-    
     public Page<Recipe> findByUser(User u, Pageable page);
     String queryGetRecipeByUser = "select r from Recipe r inner join r.user ";
     @Query(queryGetRecipeByUser)
