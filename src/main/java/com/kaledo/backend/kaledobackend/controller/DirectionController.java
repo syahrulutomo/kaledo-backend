@@ -60,16 +60,9 @@ public class DirectionController {
          return directionDao.findById(id);
      }
      
-     @RequestMapping(value="/direction/{idRecipe}", method = RequestMethod.DELETE)
+     @RequestMapping(value="/direction/{id}", method = RequestMethod.DELETE)
      @ResponseStatus(HttpStatus.OK)
-     public void hapusDirection(@PathVariable("idRecipe") String idRecipe){
-         Recipe r = new Recipe();
-         r.setId(idRecipe);
-         
-         Direction d = new Direction();
-         d.setRecipe(r);
-         
-         directionDao.delete(d);
-
+     public void hapusDirection(@PathVariable("id") Integer id){
+         directionDao.deleteById(id);
      }
 }

@@ -6,9 +6,7 @@
 package com.kaledo.backend.kaledobackend.dao;
 
 import com.kaledo.backend.kaledobackend.entity.Ingredient;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
 
 /**
  *
