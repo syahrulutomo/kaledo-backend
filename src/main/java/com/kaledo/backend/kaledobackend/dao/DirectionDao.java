@@ -16,8 +16,5 @@ import org.springframework.data.repository.query.Param;
  * @author Syahrul
  */
 public interface DirectionDao extends  PagingAndSortingRepository<Direction, Integer>{
-    
-    @Query("DELETE d FROM Direction d WHERE d.id_recipe = :idRecipe ")
-    Recipe DeleteDirectionByIdRecipe( @Param("idRecipe") String idRecipe);
-    
+      
 }

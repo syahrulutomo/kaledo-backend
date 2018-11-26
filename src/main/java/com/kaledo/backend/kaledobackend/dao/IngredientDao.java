@@ -16,7 +16,4 @@ import org.springframework.data.repository.query.Param;
  */
 public interface IngredientDao extends  PagingAndSortingRepository<Ingredient, Integer>{
     
-    @Query("DELETE i FROM Ingredient i WHERE i.id_recipe = :idRecipe ")
-    Void DeleteIngredientByTitle( @Param("idRecipe") String idRecipe);
-    
 }
