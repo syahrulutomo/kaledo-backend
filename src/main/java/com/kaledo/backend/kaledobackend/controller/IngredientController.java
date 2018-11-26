@@ -60,9 +60,9 @@ public class IngredientController {
          return ingredientDao.findById(id);
      }
      
-     @RequestMapping(value="/ingredient/{id}", method = RequestMethod.DELETE)
+     @RequestMapping(value="/ingredient/{idRecipe}", method = RequestMethod.DELETE)
      @ResponseStatus(HttpStatus.OK)
-     public void hapusIngredient(@PathVariable("id") Integer id){
-         ingredientDao.deleteById(id);
+     public void hapusIngredient(@PathVariable("idRecipe") String idRecipe){
+         ingredientDao.DeleteIngredientByTitle(idRecipe);
      }
 }
