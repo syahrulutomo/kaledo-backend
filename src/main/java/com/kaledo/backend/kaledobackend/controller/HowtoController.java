@@ -54,9 +54,11 @@ public class HowtoController {
         hd.save(h);
     }
      
-    @RequestMapping(value="/howto/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value="/howto/{id}/user{email}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-     public void updateHowto(@PathVariable("id") String id, @RequestBody Howto h){
+     public void updateHowto(@PathVariable("id") String id, @RequestBody Howto h,
+             @PathVariable("email") String email){
+       
         h.setId(id);
         hd.save(h);
      }
