@@ -55,9 +55,9 @@ public class RecipeController {
         return recipeDao.findByUser(u, page);
     }
     
-     @RequestMapping(value="/recipe/category{idCategory}/user{email}", method = RequestMethod.POST)
-     @ResponseStatus(HttpStatus.CREATED)
-     public void insertRecipeBaru(@RequestBody Recipe r, @PathVariable("idCategory") Integer idCategory,
+    @RequestMapping(value="/recipe/category{idCategory}/user{email}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void insertRecipeBaru(@RequestBody Recipe r, @PathVariable("idCategory") Integer idCategory,
              @PathVariable("email") String email){
         Category c = new Category();
         c.setId(idCategory);
@@ -71,18 +71,29 @@ public class RecipeController {
         recipeDao.save(r);
      }
      
-     @RequestMapping(value="/recipe/{id}", method = RequestMethod.PUT)
-     @ResponseStatus(HttpStatus.OK)
-     public void updateRecipe(@PathVariable("id") String id, @RequestBody Recipe r){
-         r.setId(id);
-         recipeDao.save(r);
-     }
+    @RequestMapping(value="/recipe{id}/category{idCategory}/user{email}", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public void updateRecipe(@PathVariable("id") String id, @RequestBody Recipe r, @PathVariable("idCategory") Integer idCategory,
+             @PathVariable("email") String email){
+        
+        Category c = new Category();
+        c.setId(idCategory);
+        
+        User u = new User();
+        u.setEmail(email);
+        
+        r.setCategory(c);
+        r.setUser(u);
+        r.setId(id);
+        recipeDao.save(r);
+    
+    }
      
-     @RequestMapping(value="/recipe/{id}", method = RequestMethod.GET)
-     @ResponseStatus(HttpStatus.OK)
-     public Optional<Recipe> findRecipeById(@PathVariable("id") String id){
-         return recipeDao.findById(id);
-     }
+    @RequestMapping(value="/recipe/{id}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<Recipe> findRecipeById(@PathVariable("id") String id){
+        return recipeDao.findById(id);
+    }
      
      @RequestMapping(value="/recipe/title{title}/user{email}", method = RequestMethod.GET)
      @ResponseStatus(HttpStatus.OK)
