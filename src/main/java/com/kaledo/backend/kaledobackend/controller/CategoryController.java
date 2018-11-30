@@ -37,6 +37,11 @@ public class CategoryController {
         return categoryDao.findAll(page);      
     }
      
+    @RequestMapping(value="/category/recipe/user", method = RequestMethod.GET)
+    public Page<Object> cariCategoryRecipeUser(Pageable page) {         
+        return categoryDao.findRecipeAndUsers(page);      
+    }
+    
      @RequestMapping(value="/category", method = RequestMethod.POST)
      @ResponseStatus(HttpStatus.CREATED)
      public void insertCategoryBaru(@RequestBody Category c){
