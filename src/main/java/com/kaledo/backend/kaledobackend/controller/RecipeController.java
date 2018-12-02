@@ -54,7 +54,7 @@ public class RecipeController {
    
     @RequestMapping(value="/recipe/title{title}", method = RequestMethod.GET)
     public Page<Object> cariRecipeDanUser(Pageable page,@PathVariable("title") String title) {         
-       return recipeDao.findRecipeAndUsers(page);      
+       return recipeDao.SearchRecipeByTitle(title, page);      
     }
     
     @RequestMapping(value="/recipe/user{email}", method = RequestMethod.GET)
