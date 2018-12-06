@@ -88,6 +88,11 @@ public class HowtoController {
          return hd.findByUser(u, page);
      }
      
+     @RequestMapping(value="/howto/users", method = RequestMethod.GET)
+     public Page<Object> cariRecipeDanUser(Pageable page) {         
+        return hd.findHowtoAndUsers(page);      
+     }
+     
      @RequestMapping(value="/howto/{id}", method = RequestMethod.DELETE)
      @ResponseStatus(HttpStatus.OK)
      public void hapusUser(@PathVariable("id") String id){

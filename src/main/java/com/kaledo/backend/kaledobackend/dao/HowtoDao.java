@@ -22,6 +22,8 @@ import org.springframework.data.repository.query.Param;
  */
 public interface HowtoDao extends PagingAndSortingRepository<Howto, String>{
     
+    @Query("SELECT h , u FROM Howto h JOIN h.user u")
+    Page<Object> findHowtoAndUsers(Pageable page);
     
     public Page<Howto> findByUser(User u, Pageable page);
     String queryGetHowtoByUser = "select h from Howto h inner join h.user ";
