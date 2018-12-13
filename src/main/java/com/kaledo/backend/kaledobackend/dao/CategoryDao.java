@@ -17,7 +17,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface CategoryDao extends PagingAndSortingRepository<Category,Integer> {
     
-    @Query("SELECT c, u.firstName , u.lastName, u.profilPicture FROM Category c JOIN c.recipeList r JOIN r.user u")
+    @Query("SELECT c, u FROM Category c JOIN c.recipeList r JOIN r.user u")
     Page<Object> findRecipeAndUsers(Pageable page);
 
 }
